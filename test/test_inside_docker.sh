@@ -27,3 +27,6 @@ EOF
 
 cd /gratia-probe
 ./build/build_all
+
+package_version=`grep Version htcondor-ce/rpm/htcondor-ce.spec | awk '{print $2}'`
+yum localinstall -y /tmp/rpmbuild/RPMS/noarch/gratia-probe-common-${package_version}*
