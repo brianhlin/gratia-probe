@@ -28,5 +28,5 @@ cd /gratia-probe
 chown -R root:root .  # fix rpmbuild issues with user/group ownership
 ./build/build_all
 
-package_version=`grep Version htcondor-ce/rpm/htcondor-ce.spec | awk '{print $2}'`
+package_version=`grep '^Version:' build/htcondor-ce.spec | awk '{print $2}'`
 yum localinstall -y /tmp/rpmbuild/RPMS/noarch/gratia-probe-common-${package_version}*
