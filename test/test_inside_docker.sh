@@ -21,8 +21,7 @@ yum -y install yum-plugin-priorities rpm-build python-devel gcc-c++
 mkdir -p /root/rpmbuild/{BUILD,RPMS,SOURCES,SPECS,SRPMS}
 
 cat >> /etc/rpm/macros.dist << EOF
-%dist .${BUILD_ENV}.el${OS_VERSION}
-%${BUILD_ENV} 1
+%dist .osg.el${OS_VERSION}
 EOF
 
 cd /gratia-probe
