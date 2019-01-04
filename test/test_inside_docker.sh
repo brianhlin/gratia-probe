@@ -25,6 +25,7 @@ cat >> /etc/rpm/macros.dist << EOF
 EOF
 
 cd /gratia-probe
+chown -R root:root .  # fix rpmbuild issues with user/group ownership
 ./build/build_all
 
 package_version=`grep Version htcondor-ce/rpm/htcondor-ce.spec | awk '{print $2}'`
