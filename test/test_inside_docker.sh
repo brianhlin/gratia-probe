@@ -17,5 +17,13 @@ echo "exclude=mirror.beyondhosting.net" >> /etc/yum/pluginconf.d/fastestmirror.c
 
 yum -y install yum-plugin-priorities rpm-build python-devel gcc-c++
 
+# Prepare the RPM environment
+mkdir -p /tmp/rpmbuild/{BUILD,RPMS,SOURCES,SPECS,SRPMS}
+
+cat >> /etc/rpm/macros.dist << EOF
+%dist .${BUILD_ENV}.el${OS_VERSION}
+%${BUILD_ENV} 1
+EOF
+
 cd /gratia-probe
-sudo ./build/build_all
+./build/build_all
