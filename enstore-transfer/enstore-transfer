@@ -6,9 +6,9 @@ from gratia.common.Gratia import DebugPrint
 import gratia.common.Gratia as Gratia
 #import gratia.common.GratiaWrapper as GratiaWrapper
 
-from gratia.common2.meter import GratiaMeter
-from gratia.common2.pgpinput import PgInput
-import gratia.common2.timeutil as timeutil
+from gratia.common.meter import GratiaMeter
+from gratia.common.pgpinput import PgInput
+import gratia.common.timeutil as timeutil
 
 
 class _EnstoreTransferInputStub:

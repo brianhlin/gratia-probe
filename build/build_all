@@ -132,7 +132,6 @@ build/package-probe "${version}" common condor pbs-lsf sge \
                                  dCache-transfer gridftp-transfer \
                                  dCache-storage xrootd-transfer xrootd-storage \
                                  onevm slurm \
-                                 common2 \
                                  dCache-storagegroup \
                                  enstore-storage enstore-tapedrive enstore-transfer \
                                  lsf

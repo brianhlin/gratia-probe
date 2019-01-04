@@ -9,10 +9,10 @@ from gratia.common.Gratia import DebugPrint
 #import gratia.common.GratiaWrapper as GratiaWrapper
 import gratia.common.Gratia as Gratia
 
-from gratia.common2.meter import GratiaProbe, GratiaMeter
+from gratia.common.meter import GratiaProbe, GratiaMeter
 
-from gratia.common2.filepinput import FileInput
-import gratia.common2.timeutil as timeutil
+from gratia.common.filepinput import FileInput
+import gratia.common.timeutil as timeutil
 
 from gratia.lsf.accounting import AcctFile, JobFinishEvent
 

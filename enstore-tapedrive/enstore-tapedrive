@@ -5,10 +5,10 @@ from gratia.common.Gratia import DebugPrint
 #import gratia.common.GratiaWrapper as GratiaWrapper
 import gratia.common.Gratia as Gratia
 
-from gratia.common2.meter import GratiaMeter
-from gratia.common2.pgpinput import PgInput
-from gratia.common2.checkpoint import DateTransactionAuxCheckpoint
-import gratia.common2.timeutil as timeutil
+from gratia.common.meter import GratiaMeter
+from gratia.common.pgpinput import PgInput
+from gratia.common.checkpoint import DateTransactionAuxCheckpoint
+import gratia.common.timeutil as timeutil
 
 
 class _EnstoreTapeDriveInputStub:

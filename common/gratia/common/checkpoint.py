@@ -20,7 +20,7 @@ except ImportError:
     def DebugPrint(val, msg):
         sys.stderr.write("DEBUG LEVEL %s: %s\n" % (val, msg))
 
-import gratia.common2.timeutil as timeutil  # for datetime_to_unix_time
+import gratia.common.timeutil as timeutil  # for datetime_to_unix_time
 
 
 class Checkpoint(object):

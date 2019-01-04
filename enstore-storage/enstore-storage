@@ -8,9 +8,9 @@ import gratia.common.Gratia as Gratia
 from gratia.services.StorageElement import StorageElement
 from gratia.services.StorageElementRecord import StorageElementRecord
 
-from gratia.common2.meter import GratiaMeter, DebugPrintLevel
-from gratia.common2.pgpinput import PgInput
-import gratia.common2.timeutil as timeutil
+from gratia.common.meter import GratiaMeter, DebugPrintLevel
+from gratia.common.pgpinput import PgInput
+import gratia.common.timeutil as timeutil
 
 
 class _EnstoreStorageInputStub:

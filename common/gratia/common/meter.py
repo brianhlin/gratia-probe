@@ -33,8 +33,7 @@ from gratia.common.debug import DebugPrint, LogFileName
 #from gratia.common.Gratia import DebugPrint, LogFileName
 import gratia.common.GratiaWrapper as GratiaWrapper
 
-# in same package gratia.common2
-import timeutil
+import gratia.common.timeutil as timeutil
 from probeinput import ProbeInput
 
 prog_version = "%%%RPMVERSION%%%"

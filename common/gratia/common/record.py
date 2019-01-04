@@ -117,7 +117,7 @@ class Record(object):
     def Duration(self, value):
         """ Helper Function to generate the xml (Do not call directly)
         Duration ISO8601 format (PnYnMnDTnHnMnS): http://en.wikipedia.org/wiki/ISO_8601
-        use function in gratia.common2.timeutil
+        use function in gratia.common.timeutil
         """
 
         seconds = long(value * 100) % 6000 / 100.0

@@ -15,7 +15,7 @@ import gratia.common.GratiaCore as GratiaCore
 import gratia.common.Gratia as Gratia
 import gratia.common.file_utils as file_utils
 
-import gratia.common2.checkpoint as checkpoint
+import gratia.common.checkpoint as checkpoint
 
 # package inputs are ahead
 

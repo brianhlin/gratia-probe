@@ -56,7 +56,6 @@ Source14: %{name}-xrootd-transfer-%{version}.tar.bz2
 Source15: %{name}-xrootd-storage-%{version}.tar.bz2
 Source17: %{name}-onevm-%{version}.tar.bz2
 Source18: %{name}-slurm-%{version}.tar.bz2
-Source19: %{name}-common2-%{version}.tar.bz2
 Source20: %{name}-enstore-transfer-%{version}.tar.bz2
 Source21: %{name}-enstore-storage-%{version}.tar.bz2
 Source22: %{name}-enstore-tapedrive-%{version}.tar.bz2
@@ -94,7 +93,6 @@ Prefix: /etc
 %setup -q -D -T -a 15
 %setup -q -D -T -a 17
 %setup -q -D -T -a 18 
-%setup -q -D -T -a 19
 %setup -q -D -T -a 20
 %setup -q -D -T -a 21
 %setup -q -D -T -a 22
@@ -125,7 +123,7 @@ install -d $RPM_BUILD_ROOT/%{_sysconfdir}/gratia
 %if 0%{?rhel} == 7 || %_arch == noarch
   # Obtain files
 
-%define noarch_packs common condor sge metric dCache-transfer dCache-storage gridftp-transfer services hadoop-storage condor-events xrootd-transfer xrootd-storage onevm slurm common2 enstore-storage enstore-transfer enstore-tapedrive dCache-storagegroup lsf
+%define noarch_packs common condor sge metric dCache-transfer dCache-storage gridftp-transfer services hadoop-storage condor-events xrootd-transfer xrootd-storage onevm slurm enstore-storage enstore-transfer enstore-tapedrive dCache-storagegroup lsf
 
   # PWD is the working directory, used to build
   # $RPM_BUILD_ROOT%{_datadir} are the files to package
@@ -297,12 +295,9 @@ install -d $RPM_BUILD_ROOT/%{_sysconfdir}/gratia
   rm     $RPM_BUILD_ROOT%{_datadir}/gratia/common/samplemeter.py
   rm     $RPM_BUILD_ROOT%{_datadir}/gratia/common/samplemeter.pl
   rm     $RPM_BUILD_ROOT%{_datadir}/gratia/common/samplemeter_multi.py
-  rm     $RPM_BUILD_ROOT%{_datadir}/gratia/common/ProbeConfig
   rm     $RPM_BUILD_ROOT%{_datadir}/gratia/metric/samplemetric.py
   rm     $RPM_BUILD_ROOT%{_datadir}/gratia/xrootd-transfer/gratia-xrootd-transfer-alt
   rm     $RPM_BUILD_ROOT%{_datadir}/gratia/dCache-storagegroup/ProbeConfig.example
-  rm     $RPM_BUILD_ROOT%{_datadir}/gratia/common2/ProbeConfig
-  rm -rf $RPM_BUILD_ROOT%{_sysconfdir}/gratia/common2
   # TODO: allow test directory, remove from RPM
 
   # Set up var area
@@ -449,28 +444,12 @@ fi
 %if 0%{?rhel} >= 7
 %{_tmpfilesdir}/gratia.conf
 %endif
-# %description common2
-# Common files and examples for Gratia OSG accounting system probes. Version 2.
 
-# %files common2
-# %defattr(-,root,root,-)
 %{_initrddir}/gratia-probes-cron
-#%doc common2/README
-%doc %{default_prefix}/gratia/common2/README
 %{_localstatedir}/lib/gratia/
 %attr(-,gratia,gratia) %{_localstatedir}/log/gratia/
 %dir %{_sysconfdir}/gratia
 %{_localstatedir}/lock/gratia/
-# this is in common: %{python_sitelib}/gratia/__init__.py*
-%{python_sitelib}/gratia/common2
-# executables:
-%dir %{default_prefix}/gratia/common2
-# %{default_prefix}/gratia/common2/alarm.py
-# %{default_prefix}/gratia/common2/checkpoint.py
-# %{default_prefix}/gratia/common2/uuid_replacement.py
-# %{default_prefix}/gratia/common2/meter.py
-# %{default_prefix}/gratia/common2/pginput.py
-# %{default_prefix}/gratia/common2/probeinput.py
 
 %package condor
 Summary: A Condor probe
