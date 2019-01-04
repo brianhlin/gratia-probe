@@ -15,7 +15,7 @@ rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-${OS_VERSION}
 # Broken mirror?
 echo "exclude=mirror.beyondhosting.net" >> /etc/yum/pluginconf.d/fastestmirror.conf
 
-yum -y install yum-plugin-priorities rpm-build python-devel gcc-c++
+yum -y install yum-plugin-priorities rpm-build python-devel gcc-c++ make
 
 # Prepare the RPM environment
 mkdir -p /root/rpmbuild/{BUILD,RPMS,SOURCES,SPECS,SRPMS}
