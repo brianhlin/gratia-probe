@@ -29,5 +29,4 @@ chown -R root:root .  # fix rpmbuild issues with user/group ownership
 ./build/build_all
 
 package_version=`grep '^Version:' build/gratia-probe.spec | awk '{print $2}'`
-ls -lR /tmp/rpmbuild/RPMS/
-yum localinstall -y /tmp/rpmbuild/RPMS/noarch/gratia-probe-common-${package_version}*
+yum localinstall -y /root/rpmbuild/RPMS/noarch/gratia-probe-common-${package_version}*
