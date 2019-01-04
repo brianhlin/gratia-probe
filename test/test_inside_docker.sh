@@ -1,6 +1,6 @@
 #!/bin/bash -xe
 
-BUILD_ENV=$2
+OS_VERSION=$1
 
 ls -l /home
 
