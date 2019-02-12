@@ -2,9 +2,12 @@ language: python
 python:
   - "2.7"
 env:
-  matrix:
   - CONDOR_SERIES=8.8  # stable
   - CONDOR_SERIES=8.7  # development
+matrix:
+  include:
+    - python: 2.6
+      env: CONDOR_SERIES=8.8
 install:
   - pip install pyopenssl htcondor~=$CONDOR_SERIES
   - make install_python
