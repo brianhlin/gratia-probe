@@ -2,7 +2,7 @@ Name:               gratia-probe
 Summary:            Gratia OSG accounting system probes
 Group:              Applications/System
 Version:            2.4.0
-Release:            1%{?dist}
+Release:            2%{?dist}
 License:            GPL
 URL:                http://sourceforge.net/projects/gratia/
 Vendor:             The Open Science Grid <http://www.opensciencegrid.org/>
@@ -182,7 +182,7 @@ git_commit_id=$(gzip -d < %{SOURCE0} | git get-tar-commit-id)
   install -m 644 condor-batch/50-gratia.conf $RPM_BUILD_ROOT/%{_datadir}/condor/config.d/50-gratia.conf
   # but run the cron under the CE schedd
   install -m 644 condor-batch/75-gratia-ce.conf $RPM_BUILD_ROOT/%{_datadir}/condor-ce/config.d/75-gratia-ce.conf
-  install -d $RPM_BUILD_ROOT/%{_sharedstatedir}/condor/gratia/{data,tmp}
+  install -d $RPM_BUILD_ROOT/%{_sharedstatedir}/condor/gratia/{data,data/quarantine,tmp}
   rm $RPM_BUILD_ROOT%{_datadir}/gratia/condor-batch/75-gratia-ce.conf \
      $RPM_BUILD_ROOT%{_datadir}/gratia/condor-batch/50-gratia.conf
 
@@ -192,7 +192,7 @@ git_commit_id=$(gzip -d < %{SOURCE0} | git get-tar-commit-id)
 
   # Install the htcondor-ce configuration
   install -m 644 htcondor-ce/50-gratia-ce.conf $RPM_BUILD_ROOT/%{_datadir}/condor-ce/config.d/50-gratia-ce.conf
-  install -d $RPM_BUILD_ROOT/%{_sharedstatedir}/condor-ce/gratia/{data,tmp}
+  install -d $RPM_BUILD_ROOT/%{_sharedstatedir}/condor-ce/gratia/{data,data/quarantine,tmp}
   rm $RPM_BUILD_ROOT%{_datadir}/gratia/htcondor-ce/50-gratia-ce.conf
 
   # Remove remaining cruft
@@ -321,7 +321,7 @@ The HTCondor batch system probe for the Gratia OSG accounting system.
 # But the CE runs the probe
 %attr(0755,condor,condor) %dir %{_localstatedir}/log/condor-ce/gratia
 %config %{_datadir}/condor/config.d/50-gratia.conf
-%config %{_datadir}/htcondor-ce/config.d/50-gratia-ce.conf
+%config %{_datadir}/condor-ce/config.d/75-gratia-ce.conf
 %config(noreplace) %verify(not md5 size mtime) %{_sysconfdir}/gratia/condor-batch/ProbeConfig
 
 %post condor-batch
@@ -559,7 +559,10 @@ The dCache storagegroup probe for the Gratia OSG accounting system.
 
 
 %changelog
-* Wed Jan 26 2021 Brian Lin <blin@cs.wisc.edu> - 2.4.0-1
+* Wed Jan 26 2022 Brian Lin <blin@cs.wisc.edu> - 2.4.0-2
+- Packaging fixes
+
+* Wed Jan 26 2022 Brian Lin <blin@cs.wisc.edu> - 2.4.0-1
 - Add gratia-probe-condor-batch, formerly gratia-probe-condor (SOFTWARE-4978)
 - Fix ownership of quarantine directories (SOFTWARE-4975)
 
