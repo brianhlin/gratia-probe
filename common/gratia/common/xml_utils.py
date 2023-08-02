@@ -463,11 +463,7 @@ def CheckAndExtendUserIdentity(xmlDoc, userIdentityNode, namespace, prefix, use_
                 pass
 
             # Check the differen VO mapping methods
-            if Config.get_MapGroupToRole() and Config.get_VOOverride():
-                # TODO: FQAN syntax is  <group>[/Role=[<role>][/Capability=<capability>]]
-                # Group is part of the path, otherwise there are Role and Capability, no LocalGroup
-                vo_info = {'VOName': "/%s/LocalGroup=%s" % (Config.get_VOOverride(), groupid), 'ReportableVOName': Config.get_VOOverride()}
-            elif Config.get_VOOverride():
+            if Config.get_VOOverride():
                 vo_info = {'VOName': Config.get_VOOverride(), 'ReportableVOName': Config.get_VOOverride()}
             else:
                 vo_info = {'VOName': fromuserid, 'ReportableVOName': fromuserid}
