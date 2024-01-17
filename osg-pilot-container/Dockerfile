@@ -1,10 +1,19 @@
 # run from top-level gratia-probe dir with:
 #   docker build -f osg-pilot-container/Dockerfile .
 
+ARG BASE_OSG_SERIES=23
+ARG BASE_OS=el9
+ARG BASE_YUM_REPO=release
+
 # build rpms in a temporary container
-FROM opensciencegrid/software-base:3.6-el8-release as build-container
+FROM opensciencegrid/software-base:$BASE_OSG_SERIES-$BASE_OS-$BASE_YUM_REPO as build-container
+
+ARG BASE_OSG_SERIES=23
+ARG BASE_OS=el9
+ARG BASE_YUM_REPO=release
 
 LABEL name="OSG Pilot Container Probe Container"
+LABEL maintainer OSG Software <help@osg-htc.org>
 
 RUN yum install -y \
                 --disablerepo='osg-upcoming*' \
@@ -33,7 +42,7 @@ RUN osg-build rpmbuild /root/bld
 
 
 # build real container; copying in rpm results
-FROM opensciencegrid/software-base:3.6-el8-release
+FROM opensciencegrid/software-base:$BASE_OSG_SERIES-$BASE_OS-$BASE_YUM_REPO
 
 COPY --from=build-container /root/bld/_build_results /root/RPMS
 
