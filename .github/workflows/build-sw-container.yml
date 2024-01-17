@@ -2,7 +2,7 @@ name: Build and Push Docker image
 
 on:
   push:
-    branches: [ 2.x ]
+    branches: [ 2.x, SOFTWARE-5673.osg23-image ]
     paths:
       - '.github/workflows/build-sw-container.yml'
       - 'osg-pilot-container/**'
