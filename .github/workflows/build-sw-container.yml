@@ -40,7 +40,7 @@ jobs:
         run: |
           echo "output_image=gratia-ospool-ep-container:${SERIES}-${REPO}" >> ${GITHUB_OUTPUT}
 
-      - uses: opensciencegrid/build-container-action@v0.6.0
+      - uses: brianhlin/build-container-action@main
         with:
           base_os: ${{ matrix.os }}
           osg_series: ${{ matrix.osg_series }}
