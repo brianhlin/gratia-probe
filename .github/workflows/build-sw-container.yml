@@ -45,6 +45,7 @@ jobs:
           base_os: ${{ matrix.os }}
           osg_series: ${{ matrix.osg_series }}
           osg_repo: ${{ matrix.repo }}
+          dockerfile: 'ospool-ep-container/Dockerfile'
           push_image: ${{ github.ref == 'refs/heads/main' && github.event_name != 'pull_request' && github.repository_owner == 'opensciencegrid'}}
           registry_url: hub.opensciencegrid.org
           registry_user: ${{ secrets.OSG_HARBOR_ROBOT_USER }}
