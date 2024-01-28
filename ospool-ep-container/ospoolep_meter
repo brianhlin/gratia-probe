@@ -539,7 +539,8 @@ def query_and_update_db(opts):
 
 def site_ProbeName(site):
     site_dns = re.sub(r'[^a-zA-Z0-9-]', '-', site).strip('-')  # sanitize site
-    return "osg-pilot-container:%s.gratia.opensciencegrid.org" % site_dns
+    # Previously recorded as "osg-pilot-container:..."
+    return "ospool-ep-container:%s.gratia.opensciencegrid.org" % site_dns
 
 
 def outbox_row_to_jur(row):
@@ -640,7 +641,7 @@ This reduces the load on the Gratia collector.""",
 
 
 def register_gratia():
-    GratiaCore.RegisterReporter("osgpilot_meter")
+    GratiaCore.RegisterReporter("ospoolep_meter")
     GratiaCore.RegisterService("OSGPilotContainer", probe_version)
     GratiaCore.setProbeBatchManager("condor")
 

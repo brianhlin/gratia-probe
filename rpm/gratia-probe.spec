@@ -95,7 +95,7 @@ git_commit_id=$(gzip -d < %{SOURCE0} | git get-tar-commit-id)
     enstore-tapedrive
     enstore-transfer
     onevm
-    osg-pilot-container
+    ospool-ep-container
     services
   )
 
@@ -204,7 +204,7 @@ git_commit_id=$(gzip -d < %{SOURCE0} | git get-tar-commit-id)
   rm     $RPM_BUILD_ROOT%{_datadir}/gratia/dCache-storagegroup/ProbeConfig.example
   rm -rf $RPM_BUILD_ROOT%{_sysconfdir}/gratia/common2
   rm -f  $RPM_BUILD_ROOT%{_datadir}/gratia/*/README-xml.md
-  rm     $RPM_BUILD_ROOT%{_datadir}/gratia/osg-pilot-container/Dockerfile
+  rm     $RPM_BUILD_ROOT%{_datadir}/gratia/ospool-ep-container/Dockerfile
 
   # TODO: allow test directory, remove from RPM
 
@@ -212,7 +212,7 @@ git_commit_id=$(gzip -d < %{SOURCE0} | git get-tar-commit-id)
   install -d $RPM_BUILD_ROOT%{_sharedstatedir}/gratia/
   install -d $RPM_BUILD_ROOT%{_sharedstatedir}/gratia/{tmp,data,data/quarantine,logs}
   chmod 1777  $RPM_BUILD_ROOT%{_sharedstatedir}/gratia/data
-  install -d $RPM_BUILD_ROOT%{_sharedstatedir}/gratia/osg-pilot-container
+  install -d $RPM_BUILD_ROOT%{_sharedstatedir}/gratia/ospool-ep-container
 
 
 # Burn in the RPM version into the python files.
@@ -406,7 +406,7 @@ Gratia OSG accounting system probe for providing VM accounting.
 %post onevm
 %customize_probeconfig -d onevm
 
-%package osg-pilot-container
+%package ospool-ep-container
 Summary: osg pilot container probe
 Group: Applications/System
 Requires: %{name}-common = %{version}-%{release}
@@ -414,20 +414,23 @@ Requires: %{name}-common = %{version}-%{release}
 Requires: %{condor_python}
 License: See LICENSE.
 
-%description osg-pilot-container
+Provides: %{name}-osg-pilot-container = %{version}-%{release}
+Obsoletes: %{name}-osg-pilot-container < 2.8.4-2
+
+%description ospool-ep-container
 osg pilot container probe
 
-%post osg-pilot-container
-%customize_probeconfig -d osg-pilot-container
+%post ospool-ep-container
+%customize_probeconfig -d ospool-ep-container
 
-%files osg-pilot-container
+%files ospool-ep-container
 %defattr(-,root,root,-)
-%dir %{_datadir}/gratia/osg-pilot-container
-%{_datadir}/gratia/osg-pilot-container/osgpilot_meter
-%{_datadir}/gratia/osg-pilot-container/ProbeConfig
-%config(noreplace) %verify(not md5 size mtime) %{_sysconfdir}/gratia/osg-pilot-container/ProbeConfig
-%dir %{_sharedstatedir}/gratia/osg-pilot-container
-%config(noreplace) %{_sysconfdir}/cron.d/gratia-probe-osg-pilot-container.cron
+%dir %{_datadir}/gratia/ospool-ep-container
+%{_datadir}/gratia/ospool-ep-container/ospoolep_meter
+%{_datadir}/gratia/ospool-ep-container/ProbeConfig
+%config(noreplace) %verify(not md5 size mtime) %{_sysconfdir}/gratia/ospool-ep-container/ProbeConfig
+%dir %{_sharedstatedir}/gratia/ospool-ep-container
+%config(noreplace) %{_sysconfdir}/cron.d/gratia-probe-ospool-ep-container.cron
 
 %package htcondor-ce
 Summary: A HTCondor-CE probe
