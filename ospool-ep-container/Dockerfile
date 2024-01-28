@@ -12,7 +12,7 @@ ARG BASE_OSG_SERIES=23
 ARG BASE_OS=el9
 ARG BASE_YUM_REPO=release
 
-LABEL name="OSG Pilot Container Probe Container"
+LABEL name="OSPool EP Container Probe Container"
 LABEL maintainer OSG Software <help@osg-htc.org>
 
 RUN yum install -y \
