@@ -16,9 +16,10 @@ LABEL name="OSPool EP Container Probe Container"
 LABEL maintainer OSG Software <help@osg-htc.org>
 
 RUN yum install -y \
-                --disablerepo='osg-upcoming*' \
-                --enablerepo=devops \
-                osg-build
+                --enablerepo=osg-internal \
+                osg-build-deps
+
+RUN git clone https://github.com/opensciencegrid/osg-build.git
 
 COPY . /root/gratia-probe
 
@@ -38,7 +39,7 @@ RUN ver=$(awk '/Version:/ {print $2}' gratia-probe/rpm/gratia-probe.spec) \
     && echo type=git url=/root/gratia-probe tag=HEAD \
             tarball=gratia-probe-$ver.tar.gz > bld/upstream/gp.source
 
-RUN osg-build rpmbuild /root/bld
+RUN /osg-build/osg-build rpmbuild /root/bld
 
 
 # build real container; copying in rpm results
