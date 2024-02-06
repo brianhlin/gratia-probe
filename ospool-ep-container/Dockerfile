@@ -16,7 +16,7 @@ LABEL name="OSPool EP Container Probe Container"
 LABEL maintainer OSG Software <help@osg-htc.org>
 
 RUN yum install -y \
-                --enablerepo=osg-internal \
+                --enablerepo=osg-internal-development \
                 osg-build-deps
 
 RUN git clone https://github.com/opensciencegrid/osg-build.git
