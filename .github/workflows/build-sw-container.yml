@@ -5,7 +5,7 @@ on:
     branches: [ 2.x, SOFTWARE-5673.osg23-image ]
     paths:
       - '.github/workflows/build-sw-container.yml'
-      - 'osg-pilot-container/**'
+      - 'ospool-ep-container/**'
       - 'common/**'
   repository_dispatch:
     types:
