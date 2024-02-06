@@ -1,5 +1,5 @@
 # run from top-level gratia-probe dir with:
-#   docker build -f osg-pilot-container/Dockerfile .
+#   docker build -f ospool-ep-container/Dockerfile .
 
 ARG BASE_OSG_SERIES=23
 ARG BASE_OS=el9
@@ -49,10 +49,10 @@ COPY --from=build-container /root/bld/_build_results /root/RPMS
 
 # install probe rpms
 RUN yum install -y \
-                /root/RPMS/gratia-probe-{osg-pilot-container,common}-*-*.rpm
+                /root/RPMS/gratia-probe-{ospool-ep-container,common}-*-*.rpm
 
 # do minimal probe configuration
-RUN sed -i -e '/SiteName=/s/"Generic site"/"OSG Pilot Container Probe"/' \
+RUN sed -i -e '/SiteName=/s/"Generic site"/"OSPool EP Container Probe"/' \
            -e '/EnableProbe=/s/"0"/"1"/' \
            /etc/gratia/*/ProbeConfig
 
